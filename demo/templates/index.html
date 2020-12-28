@@ -64,10 +64,15 @@
                       class="d-flex flex-row align-items-start justify-content-start"
                     >
                       <li class="active"><a href="index.html">Home</a></li>
-                      <li><a href="about.html">About us</a></li>
-                      <li><a href="#">Services</a></li>
-                      <li><a href="news.html">News</a></li>
                       <li><a href="contact.html">Contact</a></li>
+                      {% if user.is_authenticated %}
+                        <li>Hello, {{user.first_name}}</li>
+                        <li><a href="accounts/logout">Logout</a></li>
+                      {% else %}
+                      <li><a href="accounts/register">Register</a></li>
+                      <li><a href="accounts/login">Login</a></li>
+                      {% endif %}
+                   
                     </ul>
                   </nav>
                   <div class="header_phone ml-auto">
@@ -393,7 +398,7 @@
                 <!-- Destination -->
                 <div class="destination item">
                   <div class="destination_image">
-					<img src="{{baseUrl}}/{{dest.img}}" alt="" />
+					<img src="{{dest.img.url}}" alt="" />
 					{% if dest.offer  %}
                     <div class="spec_offer text-center">	
 					  <a href="#">Special Offer</a>
